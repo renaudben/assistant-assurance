@@ -1,0 +1,164 @@
+body {
+    font-family: "Inter",Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: url("medias/app-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    /* background-color: #030a39; */
+}
+
+input, button{
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.title h1{
+    font-size: 38px;
+    margin:0 auto;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+
+/*.animated-title {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.animated-title h1 {
+    display: inline-block;
+    animation: marquee 10s linear infinite;
+    margin: 0;
+    font-size: 2em;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}*/
+
+.chat-container {
+    width: 450px;
+    height: 510px;
+    /* border: 1px solid #ccc; */
+    font-size: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.messages {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 20px 10px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.message .icon i {
+    font-size: 1em;
+}
+
+.message .text {
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 75%;
+}
+
+.message.user .text {
+    background-color: #800080;
+    color: #ffffff;
+}
+
+.message.bot .text {
+    background-color: #191970;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#sendBtn {
+    padding: 15px 25px;
+    border: none;
+    background-color: #42a5f5;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.typing-indicator .dots {
+    display: flex;
+}
+
+.typing-indicator .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 3px;
+    animation: typing 1s infinite;
+}
+
+.typing-indicator .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
