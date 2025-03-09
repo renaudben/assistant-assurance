@@ -6,7 +6,7 @@ Ce projet est un chatbot conçu pour aider les utilisateurs à trouver des infor
 
 * **Assistance Personnalisée :** Le chatbot aide les utilisateurs à trouver des informations sur différents types d'assurances (santé, auto, voyage, etc.) en fonction de leurs besoins et de leur budget.
 * **Interface Utilisateur Intuitive :** Une interface de chat conviviale avec des icônes pour les interlocuteurs et des couleurs distinctes pour les messages.
-* **Temps de Latence Réaliste :** Un indicateur de frappe simule un temps de latence pour une expérience de conversation plus naturelle.
+* **Temps de Latence Réaliste :** Un indicateur de saisie simule un temps de latence pour une expérience de conversation plus naturelle.
 * **Envoi de Messages Facile :** Les utilisateurs peuvent envoyer des messages en cliquant sur le bouton "Envoyer" ou en appuyant sur la touche "Entrée".
 * **Message de Bienvenue :** Le chatbot accueille les utilisateurs avec un message initial pour les guider.
 
