@@ -31,9 +31,12 @@ function addMessage(message, sender) {
     messages.scrollTop = messages.scrollHeight; // Défilement vers le bas pour afficher le dernier message
 }
 
+//Initialisation du message du chatbot
+addMessage("Salut, je vais vous aider à trouver une assurance. Quel est votre besoin ?", "bot");
+
 /* Fonction pour simuler un temps de latence avec des pointillés animés. */
 function showTypingIndicator() {
-    // Création d'un élément div pour l'indicateur de frappe
+    // Création d'un élément div pour l'indicateur de saisie
     const typingIndicator = document.createElement("div");
     typingIndicator.classList.add("typing-indicator");
     // Ajout des pointillés animés
@@ -42,9 +45,9 @@ function showTypingIndicator() {
     messages.scrollTop = messages.scrollHeight; // Défilement vers le bas
 }
 
-/*Fonction pour retirer l'indicateur de frappe.*/
+/*Fonction pour retirer l'indicateur de saisie.*/
 function hideTypingIndicator() {
-    // Sélection de l'indicateur de frappe
+    // Sélection de l'indicateur de saisie
     const typingIndicator = document.querySelector('.typing-indicator');
     if (typingIndicator) {
         typingIndicator.remove(); // Suppression de l'indicateur
@@ -53,7 +56,7 @@ function hideTypingIndicator() {
 
 /* Fonction asynchrone pour envoyer un message à l'API Gemini et afficher la réponse.*/
 async function getGeminiResponse(userMessage) {
-    showTypingIndicator(); // Affiche l'indicateur de frappe
+    showTypingIndicator(); // Affiche l'indicateur de saisie
 
     try {
         // Envoi de la requête POST à l'API Gemini
@@ -64,17 +67,13 @@ async function getGeminiResponse(userMessage) {
             },
             body: JSON.stringify({
                 contents: [{
-                    parts: [
-                        {text:`Ton rôle est d'aider l'utilisateur à trouver une assurance en fonction de ses besoins (santé, auto, voyage, etc.), cela en lui proposant les meilleurs rapports qualité/prix.
-                            - Réponds si l'on te salue et patiente.
-                            - Ne répète pas le mots bonjour, bonsoir ou salut dans la même conversation.
-                            - Ne te précipite pas pour donner les informations, Essaie d'abord de bien comprendre le besoin du client en lui posant quelques questions.
-                            - Réponds de façon brève et précise en moins de 50 mots.
-                            - Ne mentionne pas SODECI Assurance.
-                            - Ne mentionne "Côte d'Ivoire" dans ton message
-                            - NB: Tu ne réponds qu'aux questions liées au domaine de l'assurance. Face à des questions liées à d'autres domaines réponds, avec courtoisie, que tu n'es pas qualifié pour les aider dans ces domaines.`},
-                        {text: userMessage}
-                    ]
+                    parts: [{ text: `Assistant assurance: ${userMessage}.Instructions :
+                        1. Fournis des réponses claires et concises, en 100 mots maximum.
+                        2. Réponds quand on te salue et ensuite assiste les utilisateurs.
+                        3. Propose les 2 ou 3 meilleures offres d'assurance avec le meilleur rapport qualité/prix, en fonction des besoins et du budget de l'utilisateur.
+                        4. Base-toi sur les informations disponibles sur les sites web des assureurs locaux pour formuler tes recommandations.
+                        5. Ne mentionne pas explicitement la Côte d'Ivoire ; considère que l'utilisateur est déjà informé de la localisation.
+                        NB: Tu ne réponds qu'aux questions liées au domaine de l'assurance. Face à des questions liées à d'autres domaines réponds, avec courtoisie, que tu n'es pas qualifié pour les aider dans ces domaines.` }]
                 }]
             })
         });
@@ -89,14 +88,14 @@ async function getGeminiResponse(userMessage) {
         // Extraction de la réponse du bot
         const botResponse = data.candidates[0].content.parts[0].text;
         const cleanText = botResponse
-        .replace(/\*\*/g, '-') // Supprime les **
-        .replace(/\*/g, '-')   // Supprime les * simples
+        .replace(/\*\*/g, '') // Supprime les **
+        .replace(/\*/g, '')   // Supprime les * simples
         .replace(/\n+/g, '\n') // Nettoyage des sauts de ligne
         .trim(); //Trim() supprime les espaces inutiles
 
         // Ajout d'un délai de 1 seconde avant d'afficher la réponse du bot
         setTimeout(() => {
-            hideTypingIndicator(); // Retire l'indicateur de frappe
+            hideTypingIndicator(); // Retire l'indicateur de saisie
             addMessage(cleanText, 'bot'); // Affiche la réponse du bot
         }, 500); // Délai de 500ms
     } 
@@ -122,6 +121,3 @@ userInput.addEventListener('keydown', (event) => {
         sendBtn.click(); // Simule un clic sur le bouton "Envoyer"
     }
 });
-
-// Message initial du robot
-addMessage("Salut, je vais vous aider à trouver une assurance. Quel est votre besoin ?", 'bot');
