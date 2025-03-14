@@ -10,7 +10,6 @@ body {
     background-size: cover;
     background-position: center;
     color: white;
-    /* background-color: #030a39; */
 }
 
 input, button{
@@ -23,24 +22,6 @@ input, button{
     text-align: center;
     text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
-
-/*.animated-title {
-    overflow: hidden;
-    white-space: nowrap;
-    width: 100%;
-}
-
-.animated-title h1 {
-    display: inline-block;
-    animation: marquee 10s linear infinite;
-    margin: 0;
-    font-size: 2em;
-}
-
-@keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}*/
 
 .chat-container {
     width: 450px;
@@ -89,19 +70,20 @@ input, button{
 
 .message .text {
     padding: 10px;
-    border-radius: 8px;
     max-width: 75%;
 }
 
 .message.user .text {
     background-color: #800080;
     color: #ffffff;
+    border-radius: 15px 20px 0px 15px;
 }
 
 .message.bot .text {
     background-color: #191970;
     color: #ffffff;
     padding: 10px;
+    border-radius: 20px 15px 15px 0px;
 }
 
 .input-area {
